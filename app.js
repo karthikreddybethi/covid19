@@ -2,12 +2,12 @@
 class Covid {
 	get(countryName="poland") {
 		return new Promise((resolve,reject) => {
-			fetch(`https://coronavirus-monitor.p.rapidapi.com/coronavirus/latest_stat_by_country_name.php?country=${countryName}`, {
+			fetch("https://coronavirus-monitor.p.rapidapi.com/coronavirus/latest_stat_by_country.php?country=poland", {
 				"method": "GET",
 				"headers": {
-				"x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
-				"x-rapidapi-key": "255ff1de94mshf64633143b351ddp12e9b3jsn7b0289a17312"
-			}
+					"x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
+					"x-rapidapi-key": "255ff1de94mshf64633143b351ddp12e9b3jsn7b0289a17312"
+				}
 			})
 			.then((response) => response.text())
 			.then((body) => resolve(JSON.parse(body)))
