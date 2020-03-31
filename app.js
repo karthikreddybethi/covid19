@@ -2,7 +2,7 @@
 class Covid {
 	get(countryName="poland") {
 		return new Promise((resolve,reject) => {
-			fetch("https://coronavirus-monitor.p.rapidapi.com/coronavirus/latest_stat_by_country.php?country=poland", {
+			fetch(`https://coronavirus-monitor.p.rapidapi.com/coronavirus/latest_stat_by_country.php?country=${countryName}`, {
 				"method": "GET",
 				"headers": {
 					"x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
