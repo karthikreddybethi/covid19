@@ -317,38 +317,35 @@ function submitData(e) {
 		"Zimbabwe"
 	];
 
-	let data3 = document.querySelector('.country-name').value.toLowerCase();
-	let data4 = "";
-	const newCountries = countries.map((country) => {
-		return country.toLowerCase()
-	})
-	
-	newCountries.forEach((country) => {
-		if(country === data3) {
-			data4 = data3;
-			document.querySelector('.main-heading').innerText = `${data3} Stats` ;
-			document.querySelector('.main-heading').style.textTransform = "capitalize";
+	let inputValue = document.querySelector('.country-name').value.toLowerCase();
+	const newCountries = countries.map(country => country.toLowerCase())
+	let validatingInputValue = newCountries.every(country => country !== inputValue)
 
+	if (validatingInputValue) {
+			document.querySelector('.main-heading').innerText = `Please enter a valid country name` ;
+			errorMessege('In case of the USA and the UK search as USA and UK')
+			
+	} else {
+			document.querySelector('.main-heading').innerText = `${inputValue} Stats` ;
+			document.querySelector('.main-heading').style.textTransform = "capitalize";
+			errorMessege('');
 			let dataCovid = new Covid();
-			if (data3 ===''){
+			if (inputValue ===''){
 				dataCovid.get().then(data);
-			} else if( data3 === 'poland'){
-				dataCovid.get(data3).then(data);
+
+			} else if(inputValue === 'poland'){
+				dataCovid.get(inputValue).then(data);
 				document.querySelector(".silesian-vivodship").style.display = 'block';
 			}
 			else {
-				dataCovid.get(data3).then(data);
+				dataCovid.get(inputValue).then(data);
 				document.querySelector(".silesian-vivodship").style.display = 'none';
 			}
-
-		}
-
-	})
-
-	if (data4 !== data3){
-		document.querySelector('.main-heading').innerHTML = `Please enter a valid country name <br> <span class="warning-message">(In case of the USA and the UK search as USA and UK)</span> ` ;
-		// document.querySelector('.warning-message').textContent = `In case of the USA and the UK search as USA and UK`;
-		
 	}
+
 	e.preventDefault();
+}
+
+function errorMessege(message) {
+	document.querySelector('.warning-message').textContent = `${message}`;
 }
