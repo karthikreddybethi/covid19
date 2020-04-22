@@ -36,20 +36,20 @@ dataCovid.get('poland').then(data);
 
 
 function data(body) {
-	let totalCases = body.latest_stat_by_country[0].total_cases;
+	let totalCases = body.latest_stat_by_country[0][0].total_cases;
 	let totalCases1 = totalCases;
 	totalCases1 = totalCases1.replace(/,/g,"");
-	let totalDeaths = body.latest_stat_by_country[0].total_deaths;
-	let totalRecovered = body.latest_stat_by_country[0].total_recovered;
-	let criticalCondition = body.latest_stat_by_country[0].serious_critical;
+	let totalDeaths = body.latest_stat_by_country[0][0].total_deaths;
+	let totalRecovered = body.latest_stat_by_country[0][0].total_recovered;
+	let criticalCondition = body.latest_stat_by_country[0][0].serious_critical;
 
 	if (criticalCondition ==="") {
 		criticalCondition = 0;
 	}
 	let mildCondition = (parseInt(totalCases1,10)  - parseInt(totalDeaths) - parseInt(totalRecovered) - parseInt(criticalCondition));
 	mildCondition = mildCondition.toLocaleString();
-	let newCases = body.latest_stat_by_country[0].new_cases;
-	let newDeaths = body.latest_stat_by_country[0].new_deaths;
+	let newCases = body.latest_stat_by_country[0][0].new_cases;
+	let newDeaths = body.latest_stat_by_country[0][0].new_deaths;
 	//-----------Total cases-----------------//
 	document.querySelector('.total-cases-value').innerHTML = `Total Cases: <span>${totalCases}</span>`;
 	document.querySelector('.total-deaths-value').innerHTML = `Total Deaths: <span>${totalDeaths}</span>`;
