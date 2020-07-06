@@ -74,15 +74,14 @@ function data(body) {
 
 let polandNews = new News();
 
-polandNews.get('https://newsapi.org/v2/top-headlines?country=pl&apiKey=da3e10e7f20b4b068309092b85f2c476').then(articles).catch(err =>console.log(err));
+polandNews.get("https://content.guardianapis.com/editions/").then(articles).catch(err =>console.log(err));
 
 function articles(body) {
 	let output = ''
-	body.articles.forEach((article) => {
+	 body.response.results.forEach((article) => {
 		output += `<div class="news-one news" translate="yes">
-		<h2 class="title">${article.title}</h2>
-		<p>${article.description}</p>
-		<h4 class="read-more"><a href=${article.url}>Read More</a></h4>
+		<h2 class="title">${article.webTitle}</h2>
+		<h4 class="read-more"><a href=${article.webUrl}>Read More</a></h4>
 	</div>`
 	})
 
