@@ -74,7 +74,7 @@ function data(body) {
 
 let polandNews = new News();
 
-polandNews.get("https://content.guardianapis.com/editions/").then(articles).catch(err =>console.log(err));
+polandNews.get("https://content.guardianapis.com/search?&from-date=2020-07-01&api-key=f126c442-b130-430e-b004-1aa618cae399").then(articles).catch(err =>console.log(err));
 
 function articles(body) {
 	let output = ''
